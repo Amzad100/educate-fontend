@@ -2,11 +2,10 @@ import { Link } from "react-router-dom";
 
 const Navber = () => {
     const navItem = <>
-        <li><a>Home</a></li>
-        <li><a>Instructors</a></li>
-        <li><a>Classes</a></li>
-        <li><a>Dashboard</a></li>
-        <li><a>Instructor</a></li>
+        <li><Link to='/'>Home</Link></li>
+        <li><Link to='/instructors'>Instructors</Link></li>
+        <li><Link to='/classes'>Classes</Link></li>
+        <li><Link to='/dashboard'>Dashboard</Link></li>
     </>
     return (
         <div className="navbar bg-base-100">
@@ -33,7 +32,7 @@ const Navber = () => {
                     </div>
                 </div>
                 <div className="ml-3">
-                    <Link className="btn bg-[#2563eb] text-white">Sign up</Link>
+                    <Link to='/login' className="btn bg-[#2563eb] text-white">Login</Link>
                 </div>
             </div>
         </div>
