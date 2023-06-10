@@ -1,6 +1,22 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../Providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const Navber = () => {
+    const { user, logOut } = useContext(AuthContext);
+    const handleLogOut = () => {
+        logOut()
+            .then(() => {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'LogOut successfully',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            })
+            .catch(error => console.log(error));
+    }
     const navItem = <>
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/instructors'>Instructors</Link></li>
@@ -26,13 +42,18 @@ const Navber = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <div className="avatar">
-                    <div className="w-14 rounded-full ring ring-blue-600 ring-offset-base-100 ring-offset-2">
-                        <img src="https://i.ibb.co/RCYkvbq/2.jpg" />
-                    </div>
-                </div>
+                {
+                    user ? <><div className="avatar">
+                        <div className="w-12 rounded-full ring ring-blue-600 ring-offset-base-100 ring-offset-2">
+                            <img src={user.photoURL} />
+                        </div>
+                    </div></> : <></>
+                }
                 <div className="ml-3">
-                    <Link to='/login' className="btn bg-[#2563eb] text-white">Login</Link>
+                    {
+                        user ? <> <button onClick={handleLogOut} className="btn bg-[#2563eb] text-white">Logout</button></> :
+                            <><Link to='/login' className="btn bg-[#2563eb] text-white">Login</Link></>
+                    }
                 </div>
             </div>
         </div>
