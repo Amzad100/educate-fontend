@@ -1,10 +1,11 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import Swal from "sweetalert2";
 
 const Navber = () => {
     const { user, logOut } = useContext(AuthContext);
+    const navigate = useNavigate();
     const handleLogOut = () => {
         logOut()
             .then(() => {
@@ -16,6 +17,7 @@ const Navber = () => {
                 })
             })
             .catch(error => console.log(error));
+            navigate('/login')
     }
     const navItem = <>
         <li><Link to='/'>Home</Link></li>
