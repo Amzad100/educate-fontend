@@ -2,9 +2,11 @@ import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import Swal from "sweetalert2";
+import useSelected from "../../../Hooks/useSelected";
 
 const Navber = () => {
     const { user, logOut } = useContext(AuthContext);
+    const [selected] = useSelected();
     const navigate = useNavigate();
     const handleLogOut = () => {
         logOut()
@@ -17,13 +19,20 @@ const Navber = () => {
                 })
             })
             .catch(error => console.log(error));
-            navigate('/login')
+        navigate('/login')
     }
     const navItem = <>
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/instructors'>Instructors</Link></li>
         <li><Link to='/classes'>Classes</Link></li>
         <li><Link to='/dashboard'>Dashboard</Link></li>
+        <li>
+            <button className="btn">
+                selected Class
+                <div className="badge badge-secondary">+{selected.length}</div>
+            </button>
+        </li>
+
     </>
     return (
         <div className="navbar bg-base-100">
