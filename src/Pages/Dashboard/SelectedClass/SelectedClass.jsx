@@ -33,7 +33,7 @@ const SelectedClass = () => {
     }
 
     return (
-        <div>
+        <div className="w-full">
             <Helmet>
                 <title>EDUcate | SelectedClass</title>
             </Helmet>
