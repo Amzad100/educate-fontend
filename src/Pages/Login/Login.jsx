@@ -5,11 +5,12 @@ import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
 import { useRef } from "react";
 import { useForm } from "react-hook-form";
+import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [passwordVisible, setPasswordVisible] = useState(false);
-    const { signIn, resetPassword, googleSignIn } = useContext(AuthContext);
+    const { signIn, resetPassword } = useContext(AuthContext);
     const location = useLocation();
     const navigate = useNavigate();
     const emailRef = useRef();
@@ -33,39 +34,6 @@ const Login = () => {
                 });
                 navigate(from, { replace: true });
             })
-    }
-    // const handleLogin = event => {
-    //     event.preventDefault();
-    //     const form = event.target;
-    //     const email = form.email.value;
-    //     const password = form.password.value;
-    //     console.log(email, password);
-    //     signIn(email, password)
-    //         .then(result => {
-    //             const user = result.user;
-    //             console.log(user);
-    //             Swal.fire({
-    //                 icon: 'success',
-    //                 title: 'Login successfully',
-    //                 showConfirmButton: false,
-    //                 timer: 1500
-    //             });
-    //             navigate(from, { replace: true });
-    //         })
-    // }
-
-    const handleGoogleSingIn = () => {
-        googleSignIn()
-            .then(result => {
-                const loggedInUser = result.user;
-                console.log(loggedInUser);
-                navigate('/')
-            })
-            .catch(error => {
-                console.log('error', error.message)
-            });
-        navigate(from, { replace: true });
-
     }
 
     const handleResetPassword = () => {
@@ -135,7 +103,7 @@ const Login = () => {
                             <div className="form-control">
                                 <input className="btn bg-blue-600 text-white" type="submit" value="Login" />
                             </div>
-                            <button className='mt-2 btn btn-outline btn-info' type='submit' onClick={handleGoogleSingIn}>Google login</button>
+                            <SocialLogin></SocialLogin>
                             <p>Do not have an account? <Link className="text-blue-600 font-bold" to='/signup'>SignUP</Link></p>
                         </div>
                     </form>

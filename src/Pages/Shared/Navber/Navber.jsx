@@ -29,7 +29,7 @@ const Navber = () => {
         <li><NavLink style={navLinkstyle} to='/'>Home</NavLink></li>
         <li><NavLink style={navLinkstyle} to='/instructors'>Instructors</NavLink></li>
         <li><NavLink style={navLinkstyle} to='/classes'>Classes</NavLink></li>
-        <li><NavLink style={navLinkstyle} to='/dashboard/myselectedclass'>Dashboard</NavLink></li>
+        <li><NavLink style={navLinkstyle} to='/dashboard'>Dashboard</NavLink></li>
 
     </>
     return (

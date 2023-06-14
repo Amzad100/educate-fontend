@@ -5,12 +5,13 @@ import Main from "../Layout/Main";
 import Home from "../Pages/Home/Home/Home";
 import Instructors from "../Pages/Instructors/Instructors";
 import Classes from "../Pages/Classes/Classes";
-import Dashboard from "../Pages/Dashboard/Dashboard";
+import Dashboard from "../Layout/Dashboard";
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
 import PrivateRoutes from "./PrivateRoutes";
 import Errorpage from "../Errorpage/Errorpage";
-import SelectedClass from "../Pages/SelectedClass/SelectedClass";
+import Allusers from "../Pages/Dashboard/Allusers/Allusers";
+import SelectedClass from "../Pages/Dashboard/SelectedClass/SelectedClass";
 
 export const router = createBrowserRouter([
     {
@@ -24,15 +25,11 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'instructors',
-                element: <PrivateRoutes><Instructors></Instructors></PrivateRoutes>
+                element: <Instructors></Instructors>
             },
             {
                 path: 'classes',
                 element: <Classes></Classes>
-            },
-            {
-                path: 'dashboard',
-                element: <Dashboard></Dashboard>
             },
             {
                 path: 'login',
@@ -46,11 +43,15 @@ export const router = createBrowserRouter([
     },
     {
         path: 'dashboard',
-        element: <Dashboard></Dashboard>,
+        element: <PrivateRoutes><Dashboard></Dashboard></PrivateRoutes>,
         children: [
             {
                 path: 'myselectedclass',
                 element: <SelectedClass></SelectedClass>
+            },
+            {
+                path: 'allusers',
+                element: <Allusers></Allusers>
             }
         ]
     }

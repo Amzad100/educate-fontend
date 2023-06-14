@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
-import useSelected from "../../Hooks/useSelected";
 import Swal from "sweetalert2";
+import useSelected from "../../../Hooks/useSelected";
 
 const SelectedClass = () => {
     const [selected, refetch] = useSelected();
