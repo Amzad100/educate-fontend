@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
 import useSelected from "../../../Hooks/useSelected";
+import { Link } from "react-router-dom";
 
 const SelectedClass = () => {
     const [selected, refetch] = useSelected();
@@ -68,7 +69,7 @@ const SelectedClass = () => {
                                 </td>
                                 <td>{item.class_name}</td>
                                 <td>$ {item.price}</td>
-                                <td><button className="btn btn-primary text-white">Pay</button></td>
+                                <td><Link to='/dashboard/payment'><button className="btn btn-primary text-white">Pay</button></Link></td>
                                 <td>
                                     <button onClick={() => handleDelete(item)} className="btn btn-warning text-black">Delete</button>
                                 </td>

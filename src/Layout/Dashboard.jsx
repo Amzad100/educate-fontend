@@ -5,7 +5,7 @@ import { SiGoogleclassroom } from "react-icons/si";
 import useSelected from "../Hooks/useSelected";
 
 const Dashboard = () => {
-    const userRole = 'admin'
+    const userRole = ''
     let dashboardContent;
 
     if (userRole === 'admin') {

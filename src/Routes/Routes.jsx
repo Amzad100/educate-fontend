@@ -12,6 +12,7 @@ import PrivateRoutes from "./PrivateRoutes";
 import Errorpage from "../Errorpage/Errorpage";
 import Allusers from "../Pages/Dashboard/Allusers/Allusers";
 import SelectedClass from "../Pages/Dashboard/SelectedClass/SelectedClass";
+import Payment from "../Pages/Dashboard/Payment/Payment";
 
 export const router = createBrowserRouter([
     {
@@ -48,6 +49,10 @@ export const router = createBrowserRouter([
             {
                 path: 'myselectedclass',
                 element: <SelectedClass></SelectedClass>
+            },
+            {
+                path: 'payment',
+                element: <Payment></Payment>
             },
             {
                 path: 'allusers',
