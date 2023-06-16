@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+// import { useState } from "react";
 
 const Allusers = () => {
     const [axiosSecure] = useAxiosSecure()
@@ -9,6 +10,8 @@ const Allusers = () => {
         const res = await axiosSecure.get('/users')
         return res.data;
     })
+    // const [admin, setAdmin] = useState(false)
+    // const [instructor, setInstructor] = useState(false)
     const handleMakeAdmin = user => {
         fetch(`https://educate-server-amzad100.vercel.app/users/admin/${user._id}`, {
             method: 'PATCH'
@@ -23,6 +26,7 @@ const Allusers = () => {
                         showConfirmButton: false,
                         timer: 1500
                     })
+                    // setAdmin(true);
                 }
             })
 
@@ -41,6 +45,7 @@ const Allusers = () => {
                         showConfirmButton: false,
                         timer: 1500
                     })
+                    // setInstructor(true)
                 }
             })
 
@@ -78,11 +83,10 @@ const Allusers = () => {
                                         user.role === 'admin' ? 'admin' : user.role === 'instructor' ? 'instructor' : 'student'
                                     }
                                 </td>
-                                <td><button onClick={() => handleMakeInstructor(user)} className="btn btn-primary text-white">Make Instructor</button></td>
-                                <td><button onClick={() => handleMakeAdmin(user)} className="btn btn-warning text-black">Make Admin</button></td>
+                                <td><button disabled={false} onClick={() => handleMakeInstructor(user)} className="btn btn-primary text-white">Make Instructor</button></td>
+                                <td><button disabled={false} onClick={() => handleMakeAdmin(user)} className="btn btn-warning text-black">Make Admin</button></td>
                             </tr>)
                         }
-
                     </tbody>
                 </table>
             </div>

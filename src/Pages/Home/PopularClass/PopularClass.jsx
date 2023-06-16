@@ -4,7 +4,7 @@ const PopularClass = () => {
     const [classes, setclasses] = useState([])
 
     useEffect(() => {
-        fetch('data.json')
+        fetch('https://educate-server-amzad100.vercel.app')
             .then(res => res.json())
             .then(data => {
                 const popularClasses = data.sort(
