@@ -34,36 +34,26 @@ const Dashboard = () => {
                     <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
                         {/* Sidebar content here */}
                         {
-                            isAdmin ? <>
+                            isAdmin ? (<>
                                 <li><NavLink to='/dashboard/adminhome' style={navLinkstyle}><FaHome></FaHome> Admin Home</NavLink></li>
                                 <li><NavLink to='/dashboard/manageclass' style={navLinkstyle}><SiGoogleclassroom></SiGoogleclassroom> Manage Classes
                                 </NavLink></li>
                                 <li><NavLink to='/dashboard/allusers' style={navLinkstyle}><SiGoogleclassroom></SiGoogleclassroom> Manage users
                                 </NavLink></li>
-
-                            </> : <>
-                                <li><NavLink to='/dashboard/userhome' style={navLinkstyle}><FaHome></FaHome> User Home</NavLink></li>
-                                <li><NavLink to='/dashboard/myselectedclass' style={navLinkstyle}><FaShoppingCart></FaShoppingCart> My selected class
-                                    <span className="badge badge-info">+{selected.length || 0}</span>
-                                </NavLink></li>
-                                <li><NavLink to='/dashboard/myenrolledclass' style={navLinkstyle}><FaShoppingCart></FaShoppingCart> My Enrolled Classes</NavLink></li>
-                                <li><NavLink to='/dashboard/history' style={navLinkstyle}><FaWallet></FaWallet> Payment History</NavLink></li>
-                            </>
-                        }
-                        {
-                            isInstructor ? <>
-                                <li><NavLink to='/dashboard/instructorhome' style={navLinkstyle}><FaHome></FaHome> Instructor Home</NavLink></li>
-                                <li><NavLink to='/dashboard/addclass' style={navLinkstyle}><SiGoogleclassroom></SiGoogleclassroom> Add a class
-                                </NavLink></li>
-                                <li><NavLink to='/dashboard/myclass' style={navLinkstyle}><FaUsers></FaUsers>My class</NavLink></li>
-                            </> : <>
-                                <li><NavLink to='/dashboard/userhome' style={navLinkstyle}><FaHome></FaHome> User Home</NavLink></li>
-                                <li><NavLink to='/dashboard/myselectedclass' style={navLinkstyle}><FaShoppingCart></FaShoppingCart> My selected class
-                                    <span className="badge badge-info">+{selected.length || 0}</span>
-                                </NavLink></li>
-                                <li><NavLink to='/dashboard/myenrolledclass' style={navLinkstyle}><FaShoppingCart></FaShoppingCart> My Enrolled Classes</NavLink></li>
-                                <li><NavLink to='/dashboard/history' style={navLinkstyle}><FaWallet></FaWallet> Payment History</NavLink></li>
-                            </>
+                            </>) : (<>{
+                                isInstructor ? (<>
+                                    <li><NavLink to='/dashboard/instructorhome' style={navLinkstyle}><FaHome></FaHome> Instructor Home</NavLink></li>
+                                    <li><NavLink to='/dashboard/addclass' style={navLinkstyle}><SiGoogleclassroom></SiGoogleclassroom> Add a class
+                                    </NavLink></li>
+                                    <li><NavLink to='/dashboard/myclass' style={navLinkstyle}><FaUsers></FaUsers>My class</NavLink></li>
+                                </>) : (<>
+                                    <li><NavLink to='/dashboard/userhome' style={navLinkstyle}><FaHome></FaHome> User Home</NavLink></li>
+                                    <li><NavLink to='/dashboard/myselectedclass' style={navLinkstyle}><FaShoppingCart></FaShoppingCart> My selected class
+                                        <span className="badge badge-info">+{selected.length || 0}</span>
+                                    </NavLink></li>
+                                    <li><NavLink to='/dashboard/myenrolledclass' style={navLinkstyle}><FaShoppingCart></FaShoppingCart> My Enrolled Classes</NavLink></li>
+                                    <li><NavLink to='/dashboard/history' style={navLinkstyle}><FaWallet></FaWallet> Payment History</NavLink></li>
+                                </>)}</>)
                         }
                         <div className="divider"></div>
                         <li><NavLink style={navLinkstyle} to='/'><FaHome></FaHome> Home</NavLink></li>
