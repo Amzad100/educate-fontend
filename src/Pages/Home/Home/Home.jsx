@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import Slider from "../Slider/Slider";
 import PopularClass from "../PopularClass/PopularClass";
 import PopularInstructors from "../PopularInstructors/PopularInstructors";
+import ProudSection from "../ProudSection/ProudSection";
 
 const Home = () => {
     return (
@@ -13,7 +14,7 @@ const Home = () => {
             <div className="max-w-7xl mx-auto">
                 <PopularClass></PopularClass>
                 <PopularInstructors></PopularInstructors>
-                <h1>This is home</h1>
+                <ProudSection></ProudSection>
             </div>
         </div>
     );

@@ -22,11 +22,11 @@ const PopularClass = () => {
                     classes.map(item => <div className="card w-96 bg-blue-500 shadow-xl image-full" key={item._id}>
                         <figure><img src={item.class_image} alt="Shoes" /></figure>
                         <div className="card-body">
-                            <h2 className="card-title">{item.class_name}</h2>
-                            <p>{item.instructor_name}</p>
-                            <p>{item.number_of_students}</p>
+                            <h2 className="card-title">Class Name: {item.class_name}</h2>
+                            <p>Instructor Name: {item.instructor_name}</p>
+                            <p>Number Of Student: {item.number_of_students}</p>
                             <div className="card-actions">
-                                <button className="btn btn-primary">Book Now</button>
+                                <button className="btn btn-primary">Enroll Now</button>
                             </div>
                         </div>
                     </div>)

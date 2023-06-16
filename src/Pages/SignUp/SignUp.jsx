@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
@@ -7,10 +7,11 @@ import Swal from "sweetalert2";
 import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 
 const SignUp = () => {
-
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const { createUser, updateUserProfile } = useContext(AuthContext);
     const navigate = useNavigate();
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
     const onSubmit = data => {
         createUser(data.email, data.password)
             .then(result => {
@@ -42,10 +43,9 @@ const SignUp = () => {
                             })
                     })
                     .catch(error => console.log(error))
-
             })
     }
-
+    const isSignUpDisabled = password !== confirmPassword;
     return (
         <>
             <Helmet>
@@ -86,7 +86,7 @@ const SignUp = () => {
                                     <span className="label-text">Password</span>
                                 </label>
                                 <div>
-                                    <input type="password" {...register("password", {
+                                    <input onChange={(e) => setPassword(e.target.value)} type="password" {...register("password", {
                                         required: true,
                                         minLength: 6,
                                         maxLength: 20,
@@ -102,12 +102,12 @@ const SignUp = () => {
                                     <span className="label-text">Confirm Password</span>
                                 </label>
                                 <div>
-                                    <input type="password" {...register("confirmPassword", { required: true })} placeholder="Confirm password" className="input input-bordered w-full" />
+                                    <input onChange={(e) => setConfirmPassword(e.target.value)} type="password" {...register("confirmPassword", { required: true })} placeholder="Confirm password" className="input input-bordered w-full" />
                                     {errors.confirmPassword && <span>This field is required</span>}
                                 </div>
                             </div>
                             <div className="form-control mt-6">
-                                <input className="btn bg-blue-600 text-white" type="submit" value="SignUP" />
+                                <input disabled={isSignUpDisabled} className="btn bg-blue-600 text-white" type="submit" value="SignUP" />
                             </div>
                             <SocialLogin></SocialLogin>
                             <p>Already have an account? <Link className="text-blue-600 font-bold" to='/login'>Login</Link></p>

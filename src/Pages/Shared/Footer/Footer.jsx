@@ -6,14 +6,14 @@ const Footer = () => {
             <div className="footer p-10 bg-base-200 text-base-content">
                 <div>
                     <Link className="btn text-xl"><span className="text-blue-600 font-bold text-3xl">EDU</span>cate</Link>
-                    <p>ACME Industries Ltd.<br />Providing reliable tech since 1992</p>
+                    <p>Educate.<br />Since 2023</p>
                 </div>
                 <div>
                     <span className="footer-title">Company</span>
-                    <a className="link link-hover">About us</a>
-                    <a className="link link-hover">Contact</a>
-                    <a className="link link-hover">Jobs</a>
-                    <a className="link link-hover">Press kit</a>
+                    <Link to='/' className="link link-hover">Home</Link>
+                    <Link to='/instructors' className="link link-hover">Instructors</Link>
+                    <Link to='/classes' className="link link-hover">Classes</Link>
+                    <Link to='/dashboard' className="link link-hover">Dashboard</Link>
                 </div>
                 <div>
                     <span className="footer-title">Legal</span>
@@ -36,7 +36,7 @@ const Footer = () => {
             </div>
             <div className="footer footer-center p-4 bg-base-300 text-base-content">
                 <div>
-                    <p>Copyright © 2023 - All right reserved by ACME Industries Ltd</p>
+                    <p>Copyright © 2023 - All right reserved by Educate.</p>
                 </div>
             </div>
         </footer>

@@ -22,9 +22,8 @@ const PopularInstructors = () => {
                     instructors.map(instructor => <div className="card w-96 bg-blue-100 shadow-xl image-full" key={instructor._id}>
                         <figure><img className="w-96" src={instructor.instructor_image} alt="Shoes" /></figure>
                         <div className="card-body">
-                            <h2 className="card-title">{instructor.instructor_name}</h2>
-                            <p>{instructor.instructor_name}</p>
-                            <p>{instructor.number_of_students}</p>
+                            <h2 className="card-title">Instructor Name: {instructor.instructor_name}</h2>
+                            <p>Number Of students: {instructor.number_of_students}</p>
                         </div>
                     </div>)
                 }
