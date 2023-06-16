@@ -75,7 +75,6 @@ const SelectedClass = () => {
                                 </td>
                             </tr>)
                         }
-
                     </tbody>
                 </table>
             </div>

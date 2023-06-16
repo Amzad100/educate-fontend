@@ -3,18 +3,13 @@ import { NavLink, Outlet } from "react-router-dom";
 import { FaShoppingCart, FaHome, FaWallet, FaChalkboardTeacher, FaUsers } from 'react-icons/fa';
 import { SiGoogleclassroom } from "react-icons/si";
 import useSelected from "../Hooks/useSelected";
+import useAdmin from "../Hooks/useAdmin";
+import useInstructor from "../Hooks/useInstructor";
 
 const Dashboard = () => {
-    const userRole = ''
-    let dashboardContent;
-
-    if (userRole === 'admin') {
-        dashboardContent = <AdminDashboard />;
-    } else if (userRole === 'instructor') {
-        dashboardContent = <InstructorDashboard />;
-    } else {
-        dashboardContent = <StudentDashboard />;
-    }
+    const [selected] = useSelected();
+    const [isAdmin] = useAdmin();
+    const [isInstructor] = useInstructor()
 
     const navLinkstyle = ({ isActive }) => {
         return {
@@ -22,7 +17,6 @@ const Dashboard = () => {
             color: isActive ? 'white' : 'black'
         }
     }
-
     return (
         <>
             <Helmet>
@@ -39,9 +33,38 @@ const Dashboard = () => {
                     <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
                     <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
                         {/* Sidebar content here */}
-                        <div>
-                            {dashboardContent}
-                        </div>
+                        {
+                            isAdmin ? <>
+                                <li><NavLink to='/dashboard/adminhome' style={navLinkstyle}><FaHome></FaHome> Admin Home</NavLink></li>
+                                <li><NavLink to='/dashboard/manageclass' style={navLinkstyle}><SiGoogleclassroom></SiGoogleclassroom> Manage Classes
+                                </NavLink></li>
+                                <li><NavLink to='/dashboard/allusers' style={navLinkstyle}><SiGoogleclassroom></SiGoogleclassroom> Manage users
+                                </NavLink></li>
+
+                            </> : <>
+                                <li><NavLink to='/dashboard/userhome' style={navLinkstyle}><FaHome></FaHome> User Home</NavLink></li>
+                                <li><NavLink to='/dashboard/myselectedclass' style={navLinkstyle}><FaShoppingCart></FaShoppingCart> My selected class
+                                    <span className="badge badge-info">+{selected.length || 0}</span>
+                                </NavLink></li>
+                                <li><NavLink to='/dashboard/myenrolledclass' style={navLinkstyle}><FaShoppingCart></FaShoppingCart> My Enrolled Classes</NavLink></li>
+                                <li><NavLink to='/dashboard/history' style={navLinkstyle}><FaWallet></FaWallet> Payment History</NavLink></li>
+                            </>
+                        }
+                        {
+                            isInstructor ? <>
+                                <li><NavLink to='/dashboard/instructorhome' style={navLinkstyle}><FaHome></FaHome> Instructor Home</NavLink></li>
+                                <li><NavLink to='/dashboard/addclass' style={navLinkstyle}><SiGoogleclassroom></SiGoogleclassroom> Add a class
+                                </NavLink></li>
+                                <li><NavLink to='/dashboard/myclass' style={navLinkstyle}><FaUsers></FaUsers>My class</NavLink></li>
+                            </> : <>
+                                <li><NavLink to='/dashboard/userhome' style={navLinkstyle}><FaHome></FaHome> User Home</NavLink></li>
+                                <li><NavLink to='/dashboard/myselectedclass' style={navLinkstyle}><FaShoppingCart></FaShoppingCart> My selected class
+                                    <span className="badge badge-info">+{selected.length || 0}</span>
+                                </NavLink></li>
+                                <li><NavLink to='/dashboard/myenrolledclass' style={navLinkstyle}><FaShoppingCart></FaShoppingCart> My Enrolled Classes</NavLink></li>
+                                <li><NavLink to='/dashboard/history' style={navLinkstyle}><FaWallet></FaWallet> Payment History</NavLink></li>
+                            </>
+                        }
                         <div className="divider"></div>
                         <li><NavLink style={navLinkstyle} to='/'><FaHome></FaHome> Home</NavLink></li>
                         <li><NavLink style={navLinkstyle} to='/instructors'><FaChalkboardTeacher></FaChalkboardTeacher> Instructors</NavLink></li>
@@ -53,52 +76,8 @@ const Dashboard = () => {
     );
 };
 
-const AdminDashboard = () => {
-    const navLinkstyle = ({ isActive }) => {
-        return {
-            fontWeight: isActive ? 'bold' : 'normal',
-            color: isActive ? 'white' : 'black'
-        }
-    }
-    return <>
-        <li><NavLink to='/dashboard/adminhome' style={navLinkstyle}><FaHome></FaHome> Admin Home</NavLink></li>
-        <li><NavLink to='/dashboard/manageclass' style={navLinkstyle}><SiGoogleclassroom></SiGoogleclassroom> Manage Classes
-        </NavLink></li>
-        <li><NavLink to='/dashboard/allusers' style={navLinkstyle}><FaUsers></FaUsers>Manage Users</NavLink></li>
-    </>;
-};
 
-const InstructorDashboard = () => {
-    const navLinkstyle = ({ isActive }) => {
-        return {
-            fontWeight: isActive ? 'bold' : 'normal',
-            color: isActive ? 'white' : 'black'
-        }
-    }
-    return <>
-        <li><NavLink to='/dashboard/adminhome' style={navLinkstyle}><FaHome></FaHome> Instructor Home</NavLink></li>
-        <li><NavLink to='/dashboard/manageclass' style={navLinkstyle}><SiGoogleclassroom></SiGoogleclassroom> Add a Class
-        </NavLink></li>
-        <li><NavLink to='/dashboard/allusers' style={navLinkstyle}><FaUsers></FaUsers>My Classes</NavLink></li>
-    </>;
-};
 
-const StudentDashboard = () => {
-    const [selected] = useSelected();
-    const navLinkstyle = ({ isActive }) => {
-        return {
-            fontWeight: isActive ? 'bold' : 'normal',
-            color: isActive ? 'white' : 'black'
-        }
-    }
-    return <>
-        <li><NavLink to='/dashboard/userhome' style={navLinkstyle}><FaHome></FaHome> User Home</NavLink></li>
-        <li><NavLink to='/dashboard/myselectedclass' style={navLinkstyle}><FaShoppingCart></FaShoppingCart> My selected class
-            <span className="badge badge-info">+{selected.length || 0}</span>
-        </NavLink></li>
-        <li><NavLink to='/dashboard/myenrolledclass' style={navLinkstyle}><FaShoppingCart></FaShoppingCart> My Enrolled Classes</NavLink></li>
-        <li><NavLink to='/dashboard/history' style={navLinkstyle}><FaWallet></FaWallet> Payment History</NavLink></li>
-    </>;
-};
+
 
 export default Dashboard;
