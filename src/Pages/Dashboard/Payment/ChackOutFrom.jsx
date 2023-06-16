@@ -2,6 +2,7 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useContext, useEffect, useState } from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { AuthContext } from "../../../Providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const ChackOutFrom = ({ price, selected }) => {
     const stripe = useStripe();
@@ -78,7 +79,12 @@ const ChackOutFrom = ({ price, selected }) => {
                 .then(res => {
                     console.log(res.data);
                     if (res.data.result.insertedId) {
-                        // display confirm
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'payment successfully',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
                     }
                 })
         }
