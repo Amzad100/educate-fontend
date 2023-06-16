@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet-async";
 const Instructors = () => {
     const [instructors, setInstructors] = useState([])
     useEffect(() => {
-        fetch('http://localhost:5000/class')
+        fetch('https://educate-server-amzad100.vercel.app/class')
             .then(res => res.json())
             .then(data => {
                 setInstructors(data)
@@ -15,8 +15,7 @@ const Instructors = () => {
             <Helmet>
                 <title>EDUcate | Instructors</title>
             </Helmet>
-            <h1>This is instructors page</h1>
-            <div  className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mx-auto justify-center">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mx-auto justify-center">
                 {
                     instructors.map(instructor => <div className="card w-96 bg-base-100 shadow-xl" key={instructor._id}>
                         <figure className="px-10 pt-10">

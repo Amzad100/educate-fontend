@@ -14,7 +14,7 @@ const SocialLogin = () => {
                 const loggedInUser = result.user;
                 console.log(loggedInUser);
                 const sevedUser = { name: loggedInUser.displayName, email: loggedInUser.email }
-                fetch('http://localhost:5000/users', {
+                fetch('https://educate-server-amzad100.vercel.app/users', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

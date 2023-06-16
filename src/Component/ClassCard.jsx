@@ -14,7 +14,7 @@ const ClassCard = ({ item }) => {
         console.log(item);
         if (user && user.email) {
             const selectedItem = { selectedItemId: _id, email: user.email, class_name, class_image, price, instructor_name, available_seats, number_of_students }
-            fetch('http://localhost:5000/selecteds', {
+            fetch('https://educate-server-amzad100.vercel.app/selecteds', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
@@ -27,7 +27,7 @@ const ClassCard = ({ item }) => {
                         refetch();
                         Swal.fire({
                             icon: 'success',
-                            title: 'Food added on the cart.',
+                            title: 'Class on the Selected.',
                             showConfirmButton: false,
                             timer: 1500
                         })

@@ -4,7 +4,7 @@ const useClass = () => {
     const [classes, setClasses] = useState([])
     const [loading, setLoading] = useState(true)
     useEffect(() => {
-        fetch('http://localhost:5000/class')
+        fetch('https://educate-server-amzad100.vercel.app/class')
             .then(res => res.json())
             .then(result => {
                 setClasses(result)
